@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import firebase, { firestore } from 'firebase/app'
 import {useAuthState} from 'react-firebase-hooks/auth'
 import {useCollectionData} from 'react-firebase-hooks/firestore'
@@ -18,17 +18,13 @@ firebase.initializeApp({
 })
 const auth = firebase.auth();
 function App() {
-const firestore = firebase.firestore();
 const [user] = useAuthState(auth)
   return (
-    <div>
+    <div className="App">
       {user?<div><ChatRoom/><SignOut/></div>:<SignIn/>}
     </div>
   );
 }
-
-
-
 
 function SignIn(){
   const signInWithGoogle = () => {
@@ -40,35 +36,47 @@ function SignIn(){
   )
 }
 
-
-
-
-
 function ChatRoom(){
   const messageRef = firestore().collection('messages');
   const query = messageRef.orderBy('createdAt').limit(25);
-const [messages] = useCollectionData(query, {idField:'id'});
-console.log(messages);
+  const [messages] = useCollectionData(query, {idField:'id'});
+  const [formValue, setFormValue] = useState('');
+
+const sendMessage = async(e) =>{
+  e.preventDefault();
+  const {uid, photoURL} = auth.currentUser;
+  await messageRef.add({
+    text : formValue,
+    createdAt : firebase.firestore.FieldValue.serverTimestamp(),
+    uid,
+    photoURL
+  })
+  setFormValue('');
+}
   return(
-    <div>
-        <h1>ChatRoom</h1>
+    <div className="ChatRoom">
         <div>
         {messages?console.log(messages):null}
         {messages && messages.map(msg=><ChatMessage key={msg.id} message={msg}/>)}
         </div>
+
+        <form onSubmit={sendMessage}>
+          <input value={formValue} placeholder="say something..."onChange={(e)=>{setFormValue(e.target.value)}}/>
+          <button type="submit">Send</button>
+        </form>
     </div>
   )
 }
 
 function ChatMessage(props){
-const {text, uid} = props.message;
+const {text, uid, photoURL} = props.message;
 const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 return(
-<p>{text}:{messageClass}</p>
-)
-
+  <div className="ChatMessage">
+    <img src={photoURL} alt={uid}/>
+    <p>{text}:{uid}</p>
+  </div>)
 }
-
 
 function SignOut(){
   return auth.currentUser && (
