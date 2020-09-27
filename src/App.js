@@ -47,11 +47,12 @@ function SignIn(){
 function ChatRoom(){
   const dummy = useRef();
   const messageRef = firestore().collection('messages');
-  const query = messageRef.orderBy('createdAt').limit(25);
+  const query = messageRef.orderBy('createdAt');
   const [messages] = useCollectionData(query, {idField:'id'});
   const [formValue, setFormValue] = useState('');
 
 const sendMessage = async(e) =>{
+  
   e.preventDefault();
   const {uid, photoURL} = auth.currentUser;
   await messageRef.add({
@@ -62,7 +63,7 @@ const sendMessage = async(e) =>{
   })
   setFormValue('');
   dummy.current.scrollIntoView({behavior : 'smooth'});
-}
+ }
   return(
     <div>
       <div className="ChatRoom">
@@ -89,7 +90,7 @@ return(
 
 function SignOut(){
   return auth.currentUser && (
-  <button onClick={()=>auth.signOut()}>SignOut</button>
+  <button onClick={()=>auth.signOut()}>Sign Out</button>
   )
 }
 export default App;

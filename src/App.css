@@ -4,8 +4,12 @@
   font-size: 1.5vw;
   background-color: black;
 }
-
+::-webkit-scrollbar {
+  width: 0px;
+}
 .ChatRoom{
+  border:7px solid white;
+  border-radius: 50px;
   background-color: rgb(25, 0, 165);
   overflow: auto;
   padding: 20px;
@@ -46,15 +50,33 @@
   height: 4vw;
 }
 header{
-  padding:0 20px;
+  padding:20px 20px;
   background-color:black;
   display: flex;
   justify-content: space-between;
-  height: 15vh;
+  align-items: center;
+  height: 8vh;
+}
+header button{
+
 }
 header h1{
-  color:grey;
+  color: white;
 }
 form{
-  height: 10.5vh;
+  padding:30px 30px;
+  height: 5vh;
+  display: flex;
+  justify-content: space-around;
+}
+input, button{
+  color: white;
+  font-size: 1.5vw;
+  border: none;
+  outline: none;
+  background-color: black;
+}
+button{
+  border: 2px solid white;
+  border-radius: 3px;
 }
