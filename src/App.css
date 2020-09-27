@@ -1,12 +1,60 @@
 .App{
   display: flex;
   justify-content: center;
+  font-size: 1.5vw;
+  background-color: black;
 }
 
 .ChatRoom{
+  background-color: rgb(25, 0, 165);
+  overflow: auto;
+  padding: 20px;
   width: 70vw;
-  background-color:darkgray;
+  height: 70vh;
 }
-img{
-  width: 10px;
+
+.ChatMessage{
+  margin:20px;
+  display: flex;
+  align-items: center;
+}
+
+.ChatMessage p{
+  -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
+  box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
+  padding: 20px;
+  border-radius: 50px;
+  margin: 0 20px;
+  display: inline;
+  background-color: white;
+  width: 50%;
+  word-wrap: break-word;
+}
+.sent{
+  flex-direction: row-reverse;
+}
+.sent p{
+    background-color: rgb(173, 199, 255);
+}
+.ChatMessage img{
+  -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
+  -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
+  box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
+  border: 0px;
+  border-radius: 50%;
+  height: 4vw;
+}
+header{
+  padding:0 20px;
+  background-color:black;
+  display: flex;
+  justify-content: space-between;
+  height: 15vh;
+}
+header h1{
+  color:grey;
+}
+form{
+  height: 10.5vh;
 }
