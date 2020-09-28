@@ -49,6 +49,20 @@
   border-radius: 50%;
   height: 4vw;
 }
+.SignIn{
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.SignIn button{
+  width: 200px;
+  height: 100px;
+  font-size: 45px;
+}
 header{
   padding:20px 20px;
   background-color:black;
@@ -57,9 +71,7 @@ header{
   align-items: center;
   height: 8vh;
 }
-header button{
 
-}
 header h1{
   color: white;
 }

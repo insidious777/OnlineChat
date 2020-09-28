@@ -29,7 +29,10 @@ const [user] = useAuthState(auth)
         </header>
         <ChatRoom/>
       </div>
-      :<SignIn/>}
+      :<div className="SignIn">
+        <h1>Welcome! Please sign in!</h1>
+        <SignIn/>
+      </div>}
     </div>
   );
 }
@@ -40,7 +43,7 @@ function SignIn(){
       auth.signInWithPopup(provider);
   }
   return(
-      <button onClick={signInWithGoogle}>SignIn</button>
+      <button onClick={signInWithGoogle}>Sign In</button>
   )
 }
 
