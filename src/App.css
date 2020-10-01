@@ -17,13 +17,16 @@
   height: 70vh;
 }
 
-.ChatMessage{
+.messageContent{
   margin:20px;
   display: flex;
   align-items: center;
 }
-
-.ChatMessage p{
+.ChatMessage h3{
+text-align: right;
+color: aliceblue;
+}
+.messageContent p{
   -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
   -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
   box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
@@ -41,7 +44,7 @@
 .sent p{
     background-color: rgb(173, 199, 255);
 }
-.ChatMessage img{
+.messageContent img{
   -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
   -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
   box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);

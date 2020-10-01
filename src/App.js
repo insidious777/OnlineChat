@@ -24,7 +24,7 @@ const [user] = useAuthState(auth)
       {user
       ?<div>
         <header>
-          <h1>Hello, stranger!</h1>
+          <h1>OnlineChat</h1>
           <SignOut/>
         </header>
         <ChatRoom/>
@@ -57,20 +57,28 @@ function ChatRoom(){
 const sendMessage = async(e) =>{
   
   e.preventDefault();
+  if(formValue!==''){
   const {uid, photoURL} = auth.currentUser;
+  const name = auth.currentUser.displayName;
   await messageRef.add({
     text : formValue,
     createdAt : firebase.firestore.FieldValue.serverTimestamp(),
     uid,
-    photoURL
+    photoURL,
+    name
   })
   setFormValue('');
   dummy.current.scrollIntoView({behavior : 'smooth'});
+}
  }
   return(
     <div>
       <div className="ChatRoom">
-            {messages && messages.map(msg=><ChatMessage key={msg.id} message={msg}/>)}
+  {messages && messages.map(msg=>{
+    console.log(messages)
+
+  return(<ChatMessage key={msg.id} message={msg}/>)
+  })}
             <div ref={dummy}></div>
       </div>
       <form onSubmit={sendMessage}>
@@ -82,12 +90,16 @@ const sendMessage = async(e) =>{
 }
 
 function ChatMessage(props){
-const {text, uid, photoURL, createdAt} = props.message;
+  console.log(props.message)
+const {text, uid, photoURL, createdAt, name} = props.message;
 const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 return(
-  <div className={"ChatMessage "+ messageClass}>
-    <img src={photoURL} alt={uid}/>
-    <p>{text}</p>
+  <div className={"ChatMessage"}>
+    <h3>{name}</h3>
+    <div className={"messageContent "+ messageClass}>
+      <img src={photoURL} alt={uid}/>
+      <p>{text}</p>
+    </div>
   </div>)
 }
 
