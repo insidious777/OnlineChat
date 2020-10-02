@@ -74,11 +74,17 @@ const sendMessage = async(e) =>{
   return(
     <div>
       <div className="ChatRoom">
-  {messages && messages.map(msg=>{
-    console.log(messages)
-
-  return(<ChatMessage key={msg.id} message={msg}/>)
-  })}
+    {messages && messages.forEach((msg,i)=>{
+      if(messages.length!=1&&i<messages.length-1){
+      let firstMessage = i;
+      let secondMessage = i+1<messages.length?i+1:i;
+      console.log(firstMessage)
+      console.log(secondMessage)
+     if(messages[firstMessage].uid===messages[secondMessage].uid) messages[secondMessage].atr='dontDisplay'
+    }
+    })}
+    {messages && messages.map(msg=>(<ChatMessage key={msg.id} message={msg}/>)
+  )}
             <div ref={dummy}></div>
       </div>
       <form onSubmit={sendMessage}>
@@ -90,13 +96,14 @@ const sendMessage = async(e) =>{
 }
 
 function ChatMessage(props){
-  console.log(props.message)
-const {text, uid, photoURL, createdAt, name} = props.message;
+let {text, uid, photoURL, createdAt, name} = props.message;
+const atr=props.message.atr?props.message.atr:null;
+console.log(name,atr);
 const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 return(
-  <div className={"ChatMessage"}>
-    <h3>{name}</h3>
-    <div className={"messageContent "+ messageClass}>
+  <div className={"ChatMessage "+ messageClass}>
+    <h3>{atr?null:name}</h3>
+    <div className={"messageContent"}>
       <img src={photoURL} alt={uid}/>
       <p>{text}</p>
     </div>
