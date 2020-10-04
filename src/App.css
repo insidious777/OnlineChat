@@ -1,51 +1,53 @@
 .App{
   display: flex;
   justify-content: center;
-  font-size: 1.5vw;
+
   background-color: black;
 }
 ::-webkit-scrollbar {
   width: 0px;
 }
 .ChatRoom{
-  border:7px solid white;
-  border-radius: 50px;
-  background-color: rgb(25, 0, 165);
+  background-color:#262626;
   overflow: auto;
   padding: 20px;
-  width: 70vw;
+  width: 30vw;
   height: 70vh;
+  min-width: 350px;
 }
 
 .messageContent{
-  margin:20px;
   display: flex;
   align-items: center;
+  justify-content: left;
 }
 .ChatMessage h3{
 text-align: right;
-color: aliceblue;
+color: white;
 }
 .messageContent p{
   -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
   -moz-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
   box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
-  padding: 20px;
+  padding: 13px;
   border-radius: 50px;
   margin: 0 20px;
   display: inline;
-  background-color: white;
+  background-color:#313340;
+  color: #959db8;
   width: 50%;
   word-wrap: break-word;
 }
 .received h3 {
+  color: #959db8;
   text-align: left;
 }
 .sent div{
   flex-direction: row-reverse;
 }
 .sent div p{
-    background-color: rgb(173, 199, 255);
+    background-color: #ff5e695d;
+    color: white;
 }
 .messageContent img{
   -webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
@@ -53,7 +55,7 @@ color: aliceblue;
   box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.63);
   border: 0px;
   border-radius: 50%;
-  height: 4vw;
+  height: 40px;
 }
 .SignIn{
   color: white;
@@ -76,16 +78,18 @@ header{
   justify-content: space-between;
   align-items: center;
   height: 8vh;
+  border-bottom: 2px solid white;
 }
 
 header h1{
   color: white;
+  
 }
 form{
   padding:30px 30px;
-  height: 5vh;
   display: flex;
   justify-content: space-around;
+  height: 5vh;
 }
 input, button{
   color: white;
