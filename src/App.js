@@ -75,7 +75,7 @@ const sendMessage = async(e) =>{
     <div>
       <div className="ChatRoom">
     {messages && messages.forEach((msg,i)=>{
-      if(messages.length!=1&&i<messages.length-1){
+      if(messages.length!==1&&i<messages.length-1){
       let firstMessage = i;
       let secondMessage = i+1<messages.length?i+1:i;
       console.log(firstMessage)
@@ -96,7 +96,7 @@ const sendMessage = async(e) =>{
 }
 
 function ChatMessage(props){
-let {text, uid, photoURL, createdAt, name} = props.message;
+let {text, uid, photoURL, name} = props.message;
 const atr=props.message.atr?props.message.atr:null;
 console.log(name,atr);
 const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
